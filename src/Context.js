@@ -24,18 +24,16 @@ function ContextProvider({children}) {
         setAllPhotos(updatedArr);
     }
 
-    function addCartItem (img) {
+    function addToCart (img) {
         setCartItems(prevCartItems => [...prevCartItems, img])
     }
 
-    function removeCartItem (img) {
-        setCartItems(prevCartItems => prevCartItems.filter(item => item.id !==img.id))
+    function removeFromCart (id) {
+        setCartItems(prevCartItems => prevCartItems.filter(item => item.id !==id))
     }
 
-    console.log(cartItems);
-
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, addCartItem, removeCartItem}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, removeFromCart, cartItems}}>
             {children}
         </Context.Provider>
     )
