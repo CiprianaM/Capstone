@@ -5,14 +5,13 @@ import {Context} from "../Context"
 function Image({className, img}) {
     const [hovered, setHovered] = useState(false);
     const [isInCart, setIsInCart] = useState(false);
-    const {toggleFavorite, addCartItem, removeCartItem} = useContext(Context);
-    //ri-shopping-cart-fill cart
+    const {toggleFavorite, addToCart, removeFromCart, cartItems} = useContext(Context);
     function handleCartClick (img) {
         if (isInCart) {
-            removeCartItem(img);
+            removeFromCart(img.id);
 
         } else {
-            addCartItem(img);
+            addToCart(img);
         }
         setIsInCart(prev => !prev);
     }
@@ -27,13 +26,13 @@ function Image({className, img}) {
     }
     function cartIcon() {
         if(isInCart) {
-            return <i className="ri-add-circle-line cart" onClick={() => handleCartClick(img)}></i>
+            return <i className="ri-shopping-cart-fill cart" onClick={() => handleCartClick(img)}></i>
         } else if(hovered) {
             return <i className="ri-add-circle-line cart" onClick={() => handleCartClick(img)}></i>
         }
     }
 
-    // const cartIcon = hovered && <i className="ri-add-circle-line cart" onClick={() => addCartItem(img)}></i>
+
 
     return (
         <div
@@ -41,7 +40,6 @@ function Image({className, img}) {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         >
-        {/* <i class="ri-shopping-cart-fill"></i> */}
             <img src={img.url} className="image-grid"/>
             {heartIcon()}
             {cartIcon()}
