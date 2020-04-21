@@ -25,7 +25,7 @@ function Cart() {
             {cartItemElements}
     <p className="total-cost">Total: {totalPrice.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
             <div className="order-button">
-    <button onClick={()=>handleOrder()}>{textDisplayed}</button>
+            {cartItems.length>0 && <button onClick={handleOrder}>{textDisplayed}</button>}
             </div>
         </main>
     )
